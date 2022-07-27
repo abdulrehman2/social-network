@@ -1,0 +1,146 @@
+<app-add-post-dialog [isVisible]="isPopupCreatePostVisisble" (closeDialog)="reciveCloseDialogNotification($event)">
+</app-add-post-dialog>
+
+
+<div class="bg-white px-4  md:px-6 lg:px-8">
+    <!-- <ul class="list-none p-0 m-0 flex align-items-center font-medium mb-3">
+        <li>
+            <a class="text-500 no-underline line-height-3 cursor-pointer">User</a>
+        </li>
+        <li class="px-2">
+            <i class="pi pi-angle-right text-500 line-height-3"></i>
+        </li>
+        <li>
+            <span class="text-900 line-height-3">Profile</span>
+        </li>
+    </ul> -->
+    <div class="flex align-items-start flex-column lg:justify-content-between lg:flex-row">
+        <div>
+
+            <div class="flex flex-row flex-wrap ">
+
+                <ng-container *ngIf="user.profilePicture;else icon_avatar">
+                    <p-avatar class="p-1 m-1" size="xlarge" shape="circle" image="{{user.profilePicture|mediaurl}}">
+                    </p-avatar>
+                </ng-container>
+
+                <ng-template #icon_avatar>
+                    <p-avatar class="p-1 m-1" size="xlarge" shape="circle" icon="pi pi-user"></p-avatar>
+                </ng-template>
+
+                <div class="flex flex-column flex-wrap mt-5">
+                    <div class="font-medium text-3xl text-900">{{user.firstName + " "+ user.lastName}}</div>
+                    <div class="flex  mt-1">
+                        <i class="pi pi-users mr-2"></i>
+                        <span>{{user.friendsCount}} Friends</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="flex align-items-center text-700 flex-wrap">
+            <!-- <div class="mr-5 flex align-items-center mt-3">
+                    <i class="pi pi-users mr-2"></i>
+                    <span>332 Active Users</span>
+                </div>
+                <div class="mr-5 flex align-items-center mt-3">
+                    <i class="pi pi-globe mr-2"></i>
+                    <span>9402 Sessions</span>
+                </div> -->
+
+        </div>
+
+        <div class="mt-3 lg:mt-5">
+            <button pButton label="Add Post" class=" text-xs text-primary  bg-white  p-button-rounded mr-2"
+                icon="pi pi-book" (click)="showAddPostDialog()"></button>
+            <button pButton label="Edit Profile" class="text-xs text-primary bg-white  p-button-rounded"
+                icon="pi pi-user-edit"></button>
+        </div>
+    </div>
+</div>
+
+
+
+<p-tabView class="p-4">
+    <p-tabPanel leftIcon="pi pi-home" header="Home">
+
+        <div class="grid p-5">
+
+
+            <div class="col-5 hidden  lg:block">
+
+                <p-card header="Introduction" [style]=" { 'padding-bottom' : '2em' }">
+                    <ng-template pTemplate="header">
+
+                    </ng-template>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error
+                        repudiandae numquam deserunt
+                        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse,
+                        cupiditate neque quas!</p>
+                </p-card>
+
+
+                <p-card header="Friends" class=" m-2" [style]=" {  'padding-bottom' : '2em' }">
+                    <ng-template pTemplate="header">
+
+                    </ng-template>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error
+                        repudiandae numquam deserunt
+                        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse,
+                        cupiditate neque quas!</p>
+                </p-card>
+
+                <!-- <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}"
+                    styleClass="p-card-shadow">
+                    <ng-template pTemplate="header">
+                        <img alt="Card" src="assets/showcase/images/usercard.png">
+                    </ng-template>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error
+                        repudiandae numquam deserunt
+                        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse,
+                        cupiditate neque quas!</p>
+                    <ng-template pTemplate="footer">
+                        <p-button label="Save" icon="pi pi-check"></p-button>
+                        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
+                            [style]="{'margin-left': '.5em'}"></p-button>
+                    </ng-template>
+                </p-card> -->
+
+            </div>
+            <div class="col-offset-1 col">
+
+                <ng-template *ngIf="profileId;else post_add">
+                </ng-template>
+
+                <ng-template #post_add>
+                    <app-add-post></app-add-post>
+                </ng-template>
+
+                <ng-container *ngFor="let post of userPosts">
+                    <app-post-card [post]="post"></app-post-card>
+                </ng-container>
+            </div>
+
+
+        </div>
+
+
+    </p-tabPanel>
+
+    <p-tabPanel leftIcon="pi pi-users" header="Friends">
+
+
+        <div class="grid ">
+
+            <div class="col-12">
+                <app-user-friends [userId]="user.id"></app-user-friends>
+            </div>
+            <!-- <div class="col-2"></div> -->
+        </div>
+
+    </p-tabPanel>
+
+    <p-tabPanel leftIcon="pi pi-user" header="About">
+        Content 2
+    </p-tabPanel>
+</p-tabView>

@@ -1,0 +1,88 @@
+<div class="card">
+    <p-dataView #dv [value]="friends" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
+        [sortOrder]="sortOrder" layout="list">
+        <ng-template pTemplate="header">
+            <div class="flex flex-column md:flex-row md:justify-content-between">
+                <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Friend Since"
+                    (onChange)="onSortChange($event)" styleClass="mb-2 md:mb-0"></p-dropdown>
+                <span class="p-input-icon-left mb-2 md:mb-0">
+                    <i class="pi pi-search"></i>
+                    <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter(sortKey)">
+                </span>
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+        </ng-template>
+
+        <ng-template let-friend pTemplate="listItem">
+            <div class="col-12">
+                <div class="friend-list-item">
+
+
+                    <ng-container *ngIf="friend.profilePicture;else icon_avatar">
+                        <p-avatar class="p-1 m-1" size="large" shape="circle"
+                            image="{{friend.profilePicture|mediaurl}}">
+                        </p-avatar>
+                    </ng-container>
+
+                    <ng-template #icon_avatar>
+                        <p-avatar class="p-1 m-1" size="large" shape="circle" icon="pi pi-user"></p-avatar>
+                    </ng-template>
+
+
+                    <div class="friend-list-detail">
+                        <div class="friend-name">{{friend.name}}</div>
+                        <!-- <div class="friend-description">{{friend.description}}</div> -->
+                        <!-- <i class="pi pi-tag friend-category-icon"></i><span class="friend-category">{{friend.category}}</span> -->
+                    </div>
+                    <div class="friend-list-action">
+                        <!-- <span class="friend-price">${{product.price}}</span> -->
+                        <!-- <p-button icon="pi pi-shopping-cart" label="Add to Cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button> -->
+                        <!-- <span [class]="'friend-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+
+        <ng-template let-friend pTemplate="gridItem">
+            <div class="col-12 md:col-6">
+                <div class="friend-grid-item card">
+                    <!-- <div class="friend-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag friend-category-icon"></i>
+                            <span class="friend-category">{{friend.category}}</span>
+                        </div>
+                        <span [class]="'friend-badge status-' + product.inventoryStatus.toLowerCase()">{{friend.inventoryStatus}}</span>
+                    </div> -->
+                    <div class="flex flex-row flex-wrap">
+                        <!-- <img [src]="'assets/showcase/images/demo/product/' + friend.profilePicture"
+                            [alt]="friend.name" /> -->
+
+
+                        <ng-container *ngIf="friend.profilePicture;else icon_avatar">
+                            <p-avatar class="p-1 m-1" size="large" shape="circle"
+                                image="{{friend.profilePicture|mediaurl}}">
+                            </p-avatar>
+                        </ng-container>
+
+                        <ng-template #icon_avatar>
+                            <p-avatar class="p-1 m-1" size="large" shape="circle" icon="pi pi-user"></p-avatar>
+                        </ng-template>
+
+
+                        <div class="friend-name">{{friend.name}}</div>
+                        <!-- <div class="product-description">{{product.description}}</div> -->
+                        <!-- <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->
+                    </div>
+                    <!-- <div class="friend-grid-item-bottom">
+                        <span class="product-price">${{product.price}}</span>
+                        <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
+                    </div> -->
+                </div>
+            </div>
+        </ng-template>
+
+
+
+    </p-dataView>
+</div>

@@ -1,0 +1,61 @@
+<p-menu #menu [popup]="true" [model]="commentOptions"> </p-menu>
+
+
+<div class="grid mb-2 pb-2 mt-2 pt-2 ">
+    <div class="col-1">
+        <ng-container *ngIf="comment.commentCreatorProfilePicutre;else icon_avatar">
+            <p-avatar class="mt-4" shape="circle" image="{{comment.commentCreatorProfilePicutre|mediaurl}}">
+            </p-avatar>
+        </ng-container>
+
+        <ng-template #icon_avatar>
+            <p-avatar class="" shape="circle" icon="pi pi-user">
+            </p-avatar>
+        </ng-template>
+    </div>
+    <div class="col-10 surface-200 border-round-lg">
+        <div class="flex">
+
+            <a class=" flex flex-grow-1 text-xs text-black-alpha-80 no-underline"
+                [routerLink]="['/home/user-profile',comment.commentCreatorId]">{{comment.commentCreator}}</a>
+
+            <span class="flex  ml-2" style="font-size:0.6rem">{{timeSince(comment.createdDate)}}</span>
+        </div>
+
+
+
+        <p-inplace [preventClick]="true" [active]="editMode">
+            <ng-template pTemplate="display">
+                <p class="text-sm">{{comment.comment}}</p>
+            </ng-template>
+            <ng-template pTemplate="content">
+                <div class="flex flex-wrap">
+                    <input type="text" class="flex-grow-1 mr-1 text-xs" [(ngModel)]="activeComment.comment" pInputText>
+                </div>
+
+                <div class="flex flex-wrap mt-1">
+                    <button pButton pRipple type="button" label="Save" icon="pi pi-check"
+                        class="p-button-outlined p-button-rounded text-xs border-round-lg mr-1"
+                        (click)="saveEditedComment(activeComment)"></button>
+
+                    <button pButton pRipple type="button" label="Cancel" icon="pi pi-times"
+                        class="p-button-outlined p-button-rounded text-xs border-round-lg"
+                        (click)="cancelEdit()"></button>
+                </div>
+
+            </ng-template>
+        </p-inplace>
+
+
+
+    </div>
+    <div class="col-1">
+        <ng-container *ngIf="commentOptions.length > 0">
+
+
+
+            <button type="button" pButton icon="pi pi-ellipsis-h" class="text-xs  p-button-text" label=""
+                (click)="setActiveComment(comment); menu.toggle($event)"></button>
+        </ng-container>
+    </div>
+</div>

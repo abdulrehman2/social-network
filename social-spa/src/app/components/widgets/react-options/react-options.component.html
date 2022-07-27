@@ -1,0 +1,16 @@
+<div class="flex align-items-center justify-content-center col-6">
+    <p-toggleButton [(ngModel)]="post.isReacted" onIcon="{{reactTypeIcon}}" offIcon="pi pi-thumbs-up" offLabel="Like"
+        onLabel="{{reactTypeLabel}}" (onChange)="handleLike($event)" (mouseenter)="viewReactOptions($event)"
+        (mouseleave)="hideReactOptions($event)" [style]="{border:'none'}">
+    </p-toggleButton>
+</div>
+
+<p-overlayPanel #op>
+    <ng-template pTemplate>
+        <p-dock [model]="dockItems" position="bottom">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="item.icon" [alt]="item.label" width="100%">
+            </ng-template>
+        </p-dock>
+    </ng-template>
+</p-overlayPanel>

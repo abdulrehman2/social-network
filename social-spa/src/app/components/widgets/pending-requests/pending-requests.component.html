@@ -1,0 +1,45 @@
+<div class="grid p-2">
+    <div class="col-offset-1 col-8">
+        <h2 class="mb-2">Friend Requests</h2>
+        <p-dataView [value]="pendingRequests">
+            <ng-template let-request pTemplate="listItem">
+                <p-card header="" subheader="" styleClass="p-card-shadow mt-4 mb-4 ml-2 mr-2 pb-3">
+                    <ng-template pTemplate="header">
+
+                        <div class=" flex justify-content-center flex-wrap">
+                            <ng-container class*ngIf="request.profiePicture;else icon_avatar">
+                                <p-avatar class="p-1 m-1" size="xlarge" shape="circle"
+                                    image="{{request.profiePicture|mediaurl}}">
+                                </p-avatar>
+                            </ng-container>
+
+                            <ng-template #icon_avatar>
+                                <p-avatar class="p-1 m-1 " size="xlarge" shape="circle" icon="pi pi-user">
+                                </p-avatar>
+                            </ng-template>
+
+                        </div>
+
+
+                    </ng-template>
+                    <div class="text-center">
+                        <h3>{{request.firstName +" "+ request.lastName}}</h3>
+                        <p>{{request.requestDate|prettydate}} ago</p>
+                    </div>
+                    <ng-template pTemplate="footer">
+                        <div class="flex justify-content-center flex-wrap">
+                            <p-button label="Accept" icon="pi pi-check"
+                                styleClass="p-button-text p-button-raised p-button-rounded  p-button-success"
+                                (click)="acceptRequest(request)">
+                            </p-button>
+                            <p-button label="Delete" icon="pi pi-times"
+                                styleClass="p-button-text p-button-raised p-button-rounded p-button-danger"
+                                [style]="{'margin-left': '.5em'}" (click)="deleteRequest(request)"></p-button>
+                        </div>
+                    </ng-template>
+                </p-card>
+            </ng-template>
+
+        </p-dataView>
+    </div>
+</div>

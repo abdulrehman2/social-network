@@ -1,0 +1,10 @@
+<div class="flex flex-wrap">
+    <input type="text" pInputText [(ngModel)]="commentToAdd.comment" placeholder="Write a Comment"
+        class="flex-grow-1 mr-1 text-xs" />
+    <button pButton pRipple type="button" label="Comment" icon="pi pi-check"
+        class="p-button-outlined p-button-rounded text-xs border-round-lg" (click)="addComment()"></button>
+</div>
+
+<ng-container *ngFor="let comm of comments">
+    <app-comment [comment]="comm" (commentDeleteEvent)="commentDeleteSubscriber($event)"></app-comment>
+</ng-container>

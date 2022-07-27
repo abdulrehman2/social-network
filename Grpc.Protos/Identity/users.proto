@@ -1,0 +1,26 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "Grpc.Protos.Identity";
+
+
+service GrpcUser{
+	rpc GetAllUsers(GetAllRequest) returns (UserResponse);
+}
+
+
+message GetAllRequest{
+
+}
+
+message GrpcUserModel{
+	int32  userId=1;
+	google.protobuf.StringValue name=2;
+	google.protobuf.StringValue profilePicture=3;
+}
+
+message UserResponse
+{
+  repeated GrpcUserModel user=1;
+}

@@ -1,0 +1,88 @@
+<p-card class="m-2">
+    <ng-template pTemplate="header">
+        <div class="flex flex-row flex-wrap border-light-bottom">
+
+
+            <ng-container *ngIf="post.postCreatorProfilePicutre;else icon_avatar">
+                <p-avatar class="p-1 m-1" size="large" shape="circle"
+                    image="{{post.postCreatorProfilePicutre|mediaurl}}"></p-avatar>
+            </ng-container>
+
+            <ng-template #icon_avatar>
+                <p-avatar class="p-1 m-1" size="large" shape="circle" icon="pi pi-user"></p-avatar>
+            </ng-template>
+
+
+
+            <div class="flex flex-column flex-wrap">
+                <a class="font-bold m-1 text-900 no-underline"
+                    [routerLink]="['/home/user-profile',post.postCreatorId]">{{post.postCreator}}</a>
+                <p class="text-500 mt-0 m-1 text-sm">{{post.createdDate|prettydate}}</p>
+            </div>
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="content p-0">
+        <div class="p-0 m-0">
+            <div class="text-900 mt-0 mb-3" [innerHTML]="post.writtenText"></div>
+
+            <img *ngIf="isImage(post.mediaLocation)" class="border-round-md" src="{{ post.mediaLocation|mediaurl}}"
+                style="width:100%" />
+
+            <vg-player *ngIf="isVideo(post.mediaLocation)">
+                <video #media id="singleVideo" preload="auto" controls>
+                    <source src="{{post.mediaLocation|mediaurl}}" type="video/mp4">
+                </video>
+            </vg-player>
+
+        </div>
+        <div class="flex justify-content-between flex-wrap mb-1">
+
+
+            <div class="flex  flex-wrap">
+                <span class="mt-2 pi pi-thumbs-up"></span>
+                <small class="mt-2 ml-2 text-bold">{{post.reactCount}}</small>
+            </div>
+
+            <div class="flex  flex-wrap">
+                <small class="mt-2 ml-2 text-bold">{{post.commentCount}}</small>
+                <span class="mt-2 ml-2 text-sm">Comments</span>
+            </div>
+
+        </div>
+
+
+        <div class="border-light-top flex align-items-stretch flex-wrap">
+
+
+            <div class=" flex align-items-center justify-content-center col-6 p-0">
+                <app-react-options [post]="post">
+                </app-react-options>
+            </div>
+
+
+
+            <div class=" flex align-items-center justify-content-center col-6 p-0">
+                <p-toggleButton [(ngModel)]="showComments" offIcon="pi pi-comment" onIcon="pi pi-comment"
+                    offLabel="Comments" onLabel="Comments" [style]="{border:'none'}" styleClass="text-900">
+                </p-toggleButton>
+            </div>
+
+
+
+        </div>
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" class="pb-2">
+        <app-post-comments *ngIf="showComments" [post]="post"></app-post-comments>
+    </ng-template>
+
+</p-card>
+
+<p-confirmDialog [style]="{width: '50vw'}" rejectButtonStyleClass="p-button-outlined" key="confimrLayout">
+    <!-- [position]="'top'" -->
+</p-confirmDialog>

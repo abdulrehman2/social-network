@@ -1,0 +1,42 @@
+<p-toast key="layout" position="top-center"></p-toast>
+<div class="grid">
+    <div class="col-3">
+
+    </div>
+
+    <div class="col-offset-1 col-4">
+        <div class="surface-card p-4 shadow-2 border-round w-full mt-5">
+            <div class="text-center mb-5">
+                <img src="assets/hyper.svg" alt="Image" height="50" class="mb-3">
+                <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
+                <span class="text-600 font-medium line-height-3">Don't have an account?</span>
+                <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" routerLink="/signup">Create
+                    today!</a>
+            </div>
+
+            <div>
+                <label for="email1" class="block text-900 font-medium mb-2">Email</label>
+                <input id="email1" type="text" pInputText class="w-full mb-3" [(ngModel)]="loginModel.email">
+
+                <label for="password1" class="block text-900 font-medium mb-2">Password</label>
+                <input id="password1" type="password" pInputText class="w-full mb-3" [(ngModel)]="loginModel.password">
+
+                <div class="flex align-items-center justify-content-between mb-6">
+                    <div class="flex align-items-center">
+                        <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
+                        <label for="rememberme1" class="text-900">Remember me</label>
+                    </div>
+                    <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot
+                        password?</a>
+                </div>
+
+                <button pButton pRipple label="Sign In" (click)="verifyCredentials()" icon="pi pi-user"
+                    class="w-full"></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+
+    </div>
+
+</div>

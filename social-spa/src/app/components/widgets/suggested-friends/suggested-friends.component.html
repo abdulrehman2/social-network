@@ -1,0 +1,42 @@
+<p-card header="Friend Suggestions" styleClass="pb-2">
+    <ng-template pTemplate="header">
+        <!-- <img alt="Card" src="assets/showcase/images/usercard.png"> -->
+    </ng-template>
+
+
+
+
+
+    <ng-template pTemplate="content">
+
+        <div *ngFor="let suggestion of suggestions">
+            <div class="flex flex-row flex-wrap">
+                <ng-container *ngIf="suggestion.profilePicture;else icon_avatar">
+                    <p-avatar class="p-1 m-1" size="large" shape="circle"
+                        image="{{suggestion.profilePicture|mediaurl}}">
+                    </p-avatar>
+                </ng-container>
+
+                <ng-template #icon_avatar>
+                    <p-avatar class="p-1 m-1" size="large" shape="circle" icon="pi pi-user"></p-avatar>
+                </ng-template>
+
+
+                <div class="flex flex-wrap flex-column">
+                    <div class="m-2 font-small text-1xl text-900">{{suggestion.name}}</div>
+                    <button pButton label="Add Friend"
+                        class="font-small text-xs text-primary  bg-white  p-button-rounded" icon="pi pi-plus"
+                        (click)="sendFriendRequest(suggestion)"></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+
+    <ng-template pTemplate="footer">
+        <p><i class="pi pi-arrow-right"></i> View All</p>
+    </ng-template>
+
+
+
+</p-card>

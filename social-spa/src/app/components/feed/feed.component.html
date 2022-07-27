@@ -1,0 +1,24 @@
+<div class="grid flex flex-wrap">
+
+    <div class="lg:col-8 md:col-8 sm:col-12 pr-5 pl-5">
+        <!-- <p-accordion>
+            <p-accordionTab header="Start a post">
+            </p-accordionTab>
+
+        </p-accordion> -->
+
+        <app-add-post class="sm:col-12"></app-add-post>
+
+        <ng-container *ngFor="let post of feedPosts">
+            <app-post-card class="flex-grow-1" [post]="post"></app-post-card>
+        </ng-container>
+    </div>
+    <div class="col-4 hidden lg:block pr-3 pl-3">
+
+        <app-suggested-friends></app-suggested-friends>
+        <div class="mt-3">
+            <app-big-movers></app-big-movers>
+        </div>
+    </div>
+
+</div>

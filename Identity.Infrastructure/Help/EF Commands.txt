@@ -1,0 +1,9 @@
+﻿
+First go to path SocialNetwork/Identity.Api/
+Then To add a new migration run below command
+
+ ----> dotnet ef migrations add initialCreate --project ../Post.Infrastructure
+
+
+ update the database to latest migration
+dotnet ef database update

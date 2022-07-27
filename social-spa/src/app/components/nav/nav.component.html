@@ -1,0 +1,96 @@
+<p-toast key="layout" position="top-center"></p-toast>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" key="baseConfirmDialog"></p-confirmDialog>
+
+
+<div class="grid nav-bar ">
+
+    <div class="col-4 hidden lg:block">
+
+        <div class="flex  flex-wrap">
+            <img src="assets/hyper.svg" alt="Image" height="30" class="mt-2 ml-2 mr-5" [routerLink]="['/home/feed']">
+            <p-autoComplete [(ngModel)]="selectedUser" [suggestions]="userSearchResults" placeholder="Search"
+                (completeMethod)="search($event)" (onSelect)="openUser()" class="mt-1">
+                <!-- inputStyle="border-radius:10px;min-height:300px" -->
+
+                <ng-template let-searchedUser pTemplate="item">
+                    <div class="flex flex-wrap">
+
+                        <ng-container *ngIf="searchedUser.profilePicture;else icon_avatar">
+                            <p-avatar class="" shape="circle" image="{{searchedUser.profilePicture|mediaurl}}">
+                            </p-avatar>
+                        </ng-container>
+
+                        <ng-template #icon_avatar>
+                            <p-avatar class="" shape="circle" icon="pi pi-user"></p-avatar>
+                        </ng-template>
+
+
+                        <div class="ml-2 text-sm ">{{searchedUser.firstName + " "+ searchedUser.lastName}}</div>
+                    </div>
+                </ng-template>
+            </p-autoComplete>
+        </div>
+    </div>
+
+
+    <div class="col-offset-1 md:col-4 lg:col-4 sm:col-12">
+
+        <ul class="m-2">
+            <li class="nav-item" routerLinkActive="nav-link-active">
+                <a class="nav-link" routerLink="feed" href="#"><span class="text-xl pi pi-book"></span>&nbsp; News
+                    Feed</a>
+            </li>
+            <li class="nav-item" routerLinkActive="nav-link-active">
+                <a class="nav-link" routerLink="user-profile" href="#"><span class="text-xl pi pi-user"></span>&nbsp;
+                    Profile</a>
+            </li>
+
+            <!-- <li class="nav-item" routerLinkActive="nav-link-active">
+                <a class="nav-link" routerLink="market" href="#"><span class="text-xl  pi pi-shopping-cart"></span></a>
+            </li> -->
+
+
+
+
+            <!-- <li class="nav-item text-sm ">
+                <a class="nav-link" routerLink="messenger" routerLinkActive="nav-link-active" href="#"><span
+                        class="text-sm  pi pi-envelope"></span>
+                    Messenger</a>
+            </li> -->
+
+            <!-- <li class="nav-item">
+                <a class="nav-link" routerLink="login" href="#">Signout</a>
+            </li> -->
+        </ul>
+
+    </div>
+
+
+    <div class="col-offset-1 col hidden lg:block">
+        <!-- <p class="mt-3 text-sm text-pink-500">{{user.firstName +" "+ user.lastName}}</p> -->
+
+        <button type="button" pButton icon="pi pi-bell text-xl mr-1" class="p-button-text  p-button-secondary"
+            label=""></button>
+
+        <button type="button" pButton icon="pi pi-comments text-xl mr-1" class="p-button-text  p-button-secondary"
+            label=""></button>
+
+        <p-menu #menu [popup]="true" [model]="items"></p-menu>
+        <button type="button" pButton icon="pi pi-sliders-h text-xl mr-1" class="p-button-text  p-button-secondary"
+            label="" (click)="menu.toggle($event)"></button>
+    </div>
+
+</div>
+
+<div class="container ">
+    <div class="grid">
+        <div class="col-2 hidden lg:block pr-3 pl-3">
+            <app-side-bar></app-side-bar>
+        </div>
+
+        <div class="col">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</div>

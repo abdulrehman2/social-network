@@ -1,0 +1,97 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeflex/primeflex.css";
+
+html,
+body {
+    height: 100%;
+    margin-left: 0;
+    margin-right: 0px;
+    overflow-x: clip;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.p-avatar.p-avatar-xl {
+    width: 8rem;
+    height: 8rem;
+}
+
+.p-tabview .p-tabview-panels {
+    padding: 0rem !important;
+    background: #e8e8e8;
+}
+
+.p-card-footer {
+    padding: top 0rem !important;
+}
+
+.react-icon {
+    width: 24px;
+    height: 24px;
+    background-size: 100% 100%;
+}
+
+.angry-icon {
+    @extend .react-icon;
+    background-image: url("./assets/reaction/angry.png");
+}
+
+.heart-icon {
+    @extend .react-icon;
+    background-image: url("./assets/reaction/heart.png");
+}
+
+.like-icon {
+    @extend .react-icon;
+    background-image: url("./assets/reaction/like.png");
+}
+
+.smile-icon {
+    @extend .react-icon;
+    background-image: url("./assets/reaction/smile.png");
+}
+
+.p-togglebutton.p-button.p-highlight {
+    background: #fff;
+    border: none !important;
+    color: grey;
+}
+
+.p-togglebutton.p-button.p-highlight .p-button-icon-left,
+.p-togglebutton.p-button.p-highlight .p-button-icon-right {
+    color: initial;
+}
+
+.p-inplace .p-inplace-display {
+    padding: 0rem 0rem;
+}
+
+.p-dock .p-dock-list {
+    background: rgb(255 255 255);
+    border: 6px solid rgb(255 255 255 / 20%);
+    padding: 0.1rem 0.1rem;
+    /* border-radius: 0.5rem; */
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+}
+.p-dock .p-dock-action {
+    width: 2rem;
+    height: 2rem;
+}
+
+.p-menu {
+    border: none;
+    width: inherit;
+    box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+    border-radius: 3px;
+}
+
+.p-card .p-card-body {
+    padding-bottom: 0.5rem;
+}
+.p-card .p-card-content {
+    padding-bottom: 0rem;
+}

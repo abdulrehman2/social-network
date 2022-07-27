@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="11.0.1" />
+		<PackageReference Include="Grpc.AspNetCore" Version="2.46.0" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Protobuf Include="..\Grpc.Protos\Identity\users.proto" GrpcServices="Server"></Protobuf>
+		<Protobuf Include="..\Grpc.Protos\Identity\friends.proto" GrpcServices="Server"></Protobuf>
+	</ItemGroup>
+
+</Project>

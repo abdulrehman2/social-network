@@ -1,0 +1,27 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "Grpc.Protos.Identity";
+
+
+service GrpcFriend{
+	rpc GetAllFriends(GetAllFriendRequest) returns (FriendResponse);
+}
+
+
+message GetAllFriendRequest{
+	int32  userId=1;
+}
+
+message GrpcFriendModel{
+	int32  userId=1;
+	google.protobuf.StringValue name=2;
+	google.protobuf.StringValue profilePicture=3;
+	//google.protobuf.Date friendSince=4;
+}
+
+message FriendResponse
+{
+  repeated GrpcFriendModel friend=1;
+}
