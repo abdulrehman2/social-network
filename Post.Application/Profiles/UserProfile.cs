@@ -16,6 +16,13 @@ namespace Post.Application.Profiles
                 .ForMember(x => x.ExternalId, opt => opt.MapFrom(src => src.UserId))
                 .ForMember(x => x.Name, opt => opt.MapFrom(src => src.Name))
                 .ForMember(x => x.ProfilePicLocation, opt => opt.MapFrom(src => src.ProfilePicture));
+
+
+
+            CreateMap<Dtos.User.UserPublishDto, Domain.Entities.User>()
+             .ForMember(x => x.ExternalId, opt => opt.MapFrom(src => src.Id))
+             .ForMember(x => x.Name, opt => opt.MapFrom(src => src.Name))
+             .ForMember(x => x.ProfilePicLocation, opt => opt.MapFrom(src => src.ProfilePicture));
         }
     }
 }

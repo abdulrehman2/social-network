@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="1.9.0" />
     <PackageReference Include="Google.Protobuf" Version="3.21.2" />
     <PackageReference Include="Grpc.Net.Client" Version="2.46.0" />
     <PackageReference Include="Grpc.Tools" Version="2.47.0">
@@ -27,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Broker.Kafka\Kafka.Connector.csproj" />
     <ProjectReference Include="..\Post.Application\Post.Application.csproj" />
   </ItemGroup>
 

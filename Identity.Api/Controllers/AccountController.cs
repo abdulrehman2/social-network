@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Identity.Application.Contracts.AsyncDataServices;
 
 namespace Identity.Api.Controllers
 {
@@ -17,12 +18,14 @@ namespace Identity.Api.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly ITokenBuilder _tokenBuilder;
+        private readonly IMessageBusClient _messageBusClient;
 
-        public AccountController(IMapper mapper, IUserRepository userRepository, ITokenBuilder tokenBuilder)
+        public AccountController(IMapper mapper, IUserRepository userRepository, ITokenBuilder tokenBuilder, IMessageBusClient messageBusClient)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _tokenBuilder = tokenBuilder;
+            _messageBusClient = messageBusClient;
         }
 
         [HttpPost("signup")]
@@ -37,6 +40,9 @@ namespace Identity.Api.Controllers
             _userRepository.AddUser(user);
             _userRepository.SaveChanges();
 
+            //publish user create event
+            _messageBusClient.PublishNewUser(user);
+
             var userToReturn = _mapper.Map<Application.Dtos.UserManagement.UserReadDto>(user);
             userToReturn.Token = _tokenBuilder.BuildToken(user.Email, user.Id);
             var response = new GenericResponse();
@@ -47,8 +53,9 @@ namespace Identity.Api.Controllers
 
 
         [HttpPost("login")]
-        public IActionResult Login(Application.Dtos.UserManagement.UserLoginDto userDto)
+        public async Task<IActionResult> Login(Application.Dtos.UserManagement.UserLoginDto userDto)
         {
+           
             var response = new GenericResponse();
             if (!_userRepository.IsUserExist(userDto.Email))
             {
@@ -67,7 +74,7 @@ namespace Identity.Api.Controllers
             }
 
             var userToReturn = _mapper.Map<Application.Dtos.UserManagement.UserReadDto>(user);
-            userToReturn.Token= _tokenBuilder.BuildToken(user.Email,user.Id);
+            userToReturn.Token = _tokenBuilder.BuildToken(user.Email, user.Id);
             response.Data = userToReturn;
             response.Message = "Login successfull";
             return Helpers.ObjectResultHelper.GetObjectResult(response);

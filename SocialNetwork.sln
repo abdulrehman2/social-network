@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Services", "01-Services", "{828CDAAD-7D5B-4D08-B1C1-C1467603FF0D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Services", "03-Services", "{828CDAAD-7D5B-4D08-B1C1-C1467603FF0D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-ApiGateway", "02-ApiGateway", "{88A3805B-2314-4D90-86AA-25A9D2612A0F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-ApiGateway", "01-ApiGateway", "{88A3805B-2314-4D90-86AA-25A9D2612A0F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Deployment", "04-Deployment", "{B7FEF345-2D2E-4C93-9656-895384DC389F}"
 EndProject
@@ -25,29 +25,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Post.Infrastructure", "Post
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfn.ApiGateway", "Dfn.ApiGateway\Dfn.ApiGateway.csproj", "{D72C4B98-0D68-4E25-B51C-E6202DA20467}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Building Blocks", "03-Building Blocks", "{8899301C-5F1D-4AF0-81D4-5D976709B405}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Building Blocks", "02-Building Blocks", "{8899301C-5F1D-4AF0-81D4-5D976709B405}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grpc.Protos", "Grpc.Protos\Grpc.Protos.csproj", "{07F54425-82FF-4DB8-8B7C-32DF825BFF77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Application", "Identity.Application\Identity.Application.csproj", "{E04BF69C-D1D2-45A8-8B4E-4A330FDFF251}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Application", "Identity.Application\Identity.Application.csproj", "{E04BF69C-D1D2-45A8-8B4E-4A330FDFF251}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Domain", "Identity.Domain\Identity.Domain.csproj", "{E38E5394-4A8E-48C8-8674-9941A8C71104}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Domain", "Identity.Domain\Identity.Domain.csproj", "{E38E5394-4A8E-48C8-8674-9941A8C71104}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Infrastructure", "Identity.Infrastructure\Identity.Infrastructure.csproj", "{7BC31623-6562-4F40-BBB3-B77A30A5C5BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Infrastructure", "Identity.Infrastructure\Identity.Infrastructure.csproj", "{7BC31623-6562-4F40-BBB3-B77A30A5C5BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Broker.Kafka", "Broker.Kafka\Broker.Kafka.csproj", "{1F2808C7-04B5-4CE2-8B9D-588388407438}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Notifications", "04-Notifications", "{1B903673-FAE7-47CE-886E-3BD754450426}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kafka.Connector", "Broker.Kafka\Kafka.Connector.csproj", "{1F2808C7-04B5-4CE2-8B9D-588388407438}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Messenger", "03-Messenger", "{07CFD95B-9436-4BA4-9BD2-23E43D4BDA34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messenger.Api", "Messenger.Api\Messenger.Api.csproj", "{55250EFD-B1E2-452B-8BE3-2523F296036A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messenger.Api", "Messenger.Api\Messenger.Api.csproj", "{55250EFD-B1E2-452B-8BE3-2523F296036A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messenger.Domain", "Messenger.Domain\Messenger.Domain.csproj", "{091AE408-A62A-47C4-9152-FB42A679C001}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messenger.Domain", "Messenger.Domain\Messenger.Domain.csproj", "{091AE408-A62A-47C4-9152-FB42A679C001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messenger.Application", "Messenger.Application\Messenger.Application.csproj", "{FA35E673-BF01-4BAC-8015-E299BB73DF6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messenger.Application", "Messenger.Application\Messenger.Application.csproj", "{FA35E673-BF01-4BAC-8015-E299BB73DF6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messenger.Infrastructure", "Messenger.Infrastructure\Messenger.Infrastructure.csproj", "{B7BEDAEB-8F29-495D-931C-CEE36DA73B57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messenger.Infrastructure", "Messenger.Infrastructure\Messenger.Infrastructure.csproj", "{B7BEDAEB-8F29-495D-931C-CEE36DA73B57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -133,7 +131,6 @@ Global
 		{E38E5394-4A8E-48C8-8674-9941A8C71104} = {38E36088-B983-4AE2-8554-3BA96E30405C}
 		{7BC31623-6562-4F40-BBB3-B77A30A5C5BB} = {38E36088-B983-4AE2-8554-3BA96E30405C}
 		{1F2808C7-04B5-4CE2-8B9D-588388407438} = {8899301C-5F1D-4AF0-81D4-5D976709B405}
-		{1B903673-FAE7-47CE-886E-3BD754450426} = {828CDAAD-7D5B-4D08-B1C1-C1467603FF0D}
 		{07CFD95B-9436-4BA4-9BD2-23E43D4BDA34} = {828CDAAD-7D5B-4D08-B1C1-C1467603FF0D}
 		{55250EFD-B1E2-452B-8BE3-2523F296036A} = {07CFD95B-9436-4BA4-9BD2-23E43D4BDA34}
 		{091AE408-A62A-47C4-9152-FB42A679C001} = {07CFD95B-9436-4BA4-9BD2-23E43D4BDA34}

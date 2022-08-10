@@ -11,6 +11,8 @@ namespace Post.Application.Contracts.Repositories
         IPostCommentRepository PostComments{ get; }
         IPostRepository Posts{ get; }
         IPostReactRepository PostReacts{ get; }
+
+        IUserRepository Users{ get; }
         int Complete();
     }
 }

@@ -16,6 +16,7 @@ namespace Post.Infrastructure.Repositories
         public IPostCommentRepository PostComments { get; private set; }
         public IPostRepository Posts { get; private set; }
         public IPostReactRepository PostReacts { get; private set; }
+        public IUserRepository Users { get; private set; }
 
         private readonly IFriendDataClient _friendDataClient;
 
@@ -26,6 +27,7 @@ namespace Post.Infrastructure.Repositories
             PostComments = new PostCommentRepository(_appDbContext);
             PostReacts = new PostReactRepository(_appDbContext);
             Posts = new PostRepository(_appDbContext, mapper, _friendDataClient);
+            Users=new UserRepository(_appDbContext);
         }
 
        

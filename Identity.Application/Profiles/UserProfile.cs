@@ -16,6 +16,9 @@ namespace Identity.Application.Profiles
               ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id)).
               ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.FirstName + " " + src.LastName)).
               ForMember(dest => dest.ProfilePicture, opt => opt.MapFrom(src => src.ProfilePicLocation));
+
+
+            CreateMap<User, UserPublishDto>().ForMember(x => x.Name, opt => opt.MapFrom(src => src.FirstName + " " + src.LastName));
         }
 
     }

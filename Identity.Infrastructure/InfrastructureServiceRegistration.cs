@@ -12,6 +12,7 @@ using Identity.Infrastructure.Data;
 using Identity.Infrastructure.Repositories;
 using Identity.Infrastructure.Services;
 using Identity.Infrastructure.SyncDataServices.Grpc;
+using Kafka.Connector;
 
 namespace Identity.Infrastructure
 {
@@ -36,14 +37,26 @@ namespace Identity.Infrastructure
             }
 
 
-            services.AddGrpc();
-            services.AddScoped<ITokenBuilder, TokenBuilder>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IFriendshipRepository, FriendshipRepository>();
 
+            //==============SYNC DATA SERVICES=============//
+            services.AddGrpc();
+
+
+            //==============ASYNC DATA SERVICES=============//
+            services.AddScoped<Application.Contracts.AsyncDataServices.IMessageBusClient, AsyncDataServices.MessageBusClient>();
+
+            //==============SERVICES=============//
+            services.AddScoped<ITokenBuilder, TokenBuilder>();
             //services.AddTransient<IFileStorage, FileStorage>();
 
 
+            //==============REPOSITORIES=============//
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IFriendshipRepository, FriendshipRepository>();
+
+
+            //==============MESSAGE BUS=============//
+            services.AddKafkaServices(configuration, isProduction);
             return services;
         }
     }

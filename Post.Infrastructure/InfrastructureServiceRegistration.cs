@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Kafka.Connector;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,18 +50,37 @@ namespace Post.Infrastructure
                 });
             }
 
+
+
+            //================REPOSITORIES==================//
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<IPostCommentRepository, PostCommentRepository>();
             services.AddTransient<IPostReactRepository, PostReactRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+
+            //================SERVICES==================//
             services.AddTransient<IFileStorage, FileStorage>();
 
 
             //================GRPC==================//
             services.AddScoped<IUserDataClient, UserDataClient>();
             services.AddScoped<IFriendDataClient, FriendDataClient>();
+
+
+            //==============MESSAGE BUS=============//
+            services.AddKafkaServices(configuration, isProduction);
+
+
+            //==============EVENT PROCESSOR===============//
+            services.AddScoped<Application.Contracts.EventProcessing.IEventProcessor,EventProcessing.EventProcessor>();
+
+
+            //==============ASYNC DATA SERVICES =============//
+             services.AddHostedService<BackgroundServices.KafkaEventListener>();
+
             return services;
         }
     }
